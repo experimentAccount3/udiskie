@@ -1,16 +1,25 @@
 language: python
 python:
-  - "2.5"
-  - "2.6"
   - "2.7"
-  - "3.2"
-  - "3.3"
-  - "pypy"
+
+before_install:
+     # add for profile
+    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+    - sudo apt-get update -qq
+
+
 install:
+  # add for profile
+  - sudo apt-get install -qq g++-4.8
+  - export CXX="g++-4.8"
+  - pip install nose-cprof
+  - pip install properform
   - sudo apt-get -qy update
   - sudo apt-get -qy install zenity
   - sudo apt-get -qy install python-dbus python-gobject python-notify2
   - sudo apt-get -qy install python3-dbus python3-gobject python3-notify2
   - pip install . --use-mirrors
 script:
-  - nosetests
+  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_085c2ad0bf_0
+  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_085c2ad0bf_0 ./profile_udiskie_085c2ad0bf_0
+ #2017-09-18 14:16:58 modified at 0
