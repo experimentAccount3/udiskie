@@ -20,6 +20,6 @@ install:
   - sudo apt-get -qy install python3-dbus python3-gobject python3-notify2
   - pip install . --use-mirrors
 script:
-  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_c561305243_0
-  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_c561305243_0 ./profile_udiskie_c561305243_0
- #2017-09-18 14:16:34 modified at 0
+  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_c561305243_1
+  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_c561305243_1 ./profile_udiskie_c561305243_1
+ #2017-09-18 14:16:34 modified at 0 #2017-09-18 14:16:39 modified at 1
