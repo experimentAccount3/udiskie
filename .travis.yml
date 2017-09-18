@@ -17,6 +17,6 @@ install:
 
     - pip install . --use-mirrors
 script:
-  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_a2b88ef6da_1
-  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_a2b88ef6da_1 ./profile_udiskie_a2b88ef6da_1
- #2017-09-18 14:19:58 modified at 0 #2017-09-18 14:20:03 modified at 1
+  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_a2b88ef6da_2
+  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_a2b88ef6da_2 ./profile_udiskie_a2b88ef6da_2
+ #2017-09-18 14:19:58 modified at 0 #2017-09-18 14:20:03 modified at 1 #2017-09-18 14:20:07 modified at 2
