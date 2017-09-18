@@ -5,14 +5,12 @@ language: python
 # Travis runs on Ubuntu 12.04 LTS currently. :(
 python:
   - "2.7"
-  - "3.2"
-  # - "3.3"
-  # - "pypy"
+
 
 # Build inside docker containers instead of virtual machines. These are
 # faster, start quicker and support caching. Only downside: sudo is not
 # supported.
-sudo: false
+
 
 # Dependencies can be installed as follows. This works only for packages
 # whitelisted on https://github.com/travis-ci/apt-package-whitelist:
@@ -28,7 +26,19 @@ virtualenv:
   system_site_packages: true
 
 # Setup (performed within virtualenv)
+before_install:
+   # add for profile
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+
+
 install:
+# add for profile
+  - sudo apt-get install -qq g++-4.8
+  - export CXX="g++-4.8"
+  - pip install nose-cprof
+  - pip install properform
+
   # Check that package can be installed from source distribution:
   - pip install keyutils
   - python setup.py sdist
@@ -36,4 +46,6 @@ install:
 
 # Actual tests:
 script:
-  - nosetests
+  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_990cfa37e5_0
+  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_990cfa37e5_0 ./profile_udiskie_990cfa37e5_0
+ #2017-09-18 13:06:07 modified at 0
