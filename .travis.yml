@@ -7,10 +7,8 @@ python:
   # - "2.5"
   # - "2.6"
   - "2.7"
-  - "3.2"
-  # - "3.3"
-  # - "pypy"
- 
+
+
 # Inherit system site packages for use in virtualenv:
 virtualenv:
   system_site_packages: true
@@ -18,17 +16,28 @@ virtualenv:
 # Install dependencies that are hard to install:
 # (these can't be built via setuptools)
 before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
   - sudo apt-get -qy update
   - sudo apt-get -qy install
             python-gobject python3-gobject
             python-dbus python3-dbus
 
-# Setup (performed within virtualenv)
+
+
 install:
+# add for profile
+  - sudo apt-get install -qq g++-4.8
+  - export CXX="g++-4.8"
+  - pip install nose-cprof
+  - pip install properform
+            
   # Check that package can be installed from source distribution:
   - python setup.py sdist
   - pip install $(ls ./dist/*.tar.gz | sort -rV | head -n1)
 
 # Actual tests:
 script:
-  - nosetests
+  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_984115684d_0
+  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_984115684d_0 ./profile_udiskie_984115684d_0
+ #2017-09-18 13:51:10 modified at 0
