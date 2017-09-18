@@ -53,6 +53,6 @@ install:
 
 # Actual tests:
 script:
-  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_c5da66a176_1
-  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_c5da66a176_1 ./profile_udiskie_c5da66a176_1
- #2017-09-18 14:09:01 modified at 0 #2017-09-18 14:09:06 modified at 1
+  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_udiskie_c5da66a176_2
+  - python -m properform Push 47.88.50.110:15554 asdf_udiskie_c5da66a176_2 ./profile_udiskie_c5da66a176_2
+ #2017-09-18 14:09:01 modified at 0 #2017-09-18 14:09:06 modified at 1 #2017-09-18 14:09:10 modified at 2
